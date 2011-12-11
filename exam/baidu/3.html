@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<input id="result" type="text" style="display:block;width: 200px;height:15px;position: absolute;z-index: 1;">
+<select id="options" style="width: 220px;height: 20px;display: block;">
+    <option value="A">A</option>
+    <option value="B">B</option>
+    <option value="c">c</option>
+    <option value="d">d</option>
+    <option value="e">e</option>
+</select>
+<script type="text/javascript">
+    var div;
+    var toString = Object.prototype.toString;
+    function clone(obj) {
+        var result = {};
+        for (var p in obj) {
+            var type = toString(obj[p]).slice(8, -1);
+
+            if (type === 'Object') {
+                result[p] = clone(obj[p]);
+            } else if (type === 'Array') {
+                result[p] = [];
+                for (var index = 0,len = obj[p].length; index < len; index++) {
+                    var elem = obj[p][index];
+                    if (typeof elem === 'object')
+                        elem = clone(elem);
+                    result[p].push(elem);
+                }
+            } else {
+                result[p] = obj[p];
+            }
+        }
+        return result;
+    }
+</script>
+</body>
+</html>

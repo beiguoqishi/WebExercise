@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+
+    var dayMilliseconds = 24 * 60 * 60 * 1000;
+    var hourMilliseconds = dayMilliseconds / 24;
+    var minuteMilliseconds = hourMilliseconds / 60;
+    var secondMilliseconds = 1000;
+
+    var lastDateTime = new Date(new Date().getFullYear(), 12, 31, 23, 59, 59).getTime();
+
+    function getLeftTime() {
+        var now = new Date();
+        var leftTime = lastDateTime - now.getTime();
+        var day = parseInt(leftTime / dayMilliseconds);
+        var hour = 23 - now.getHours();
+        var minute = 59 - now.getMinutes();
+        var second = 59 - now.getSeconds();
+        second = (second + 1) % 60;
+        if (second === 0) {
+            minute = (minute + 1) % 60;
+            if (minute === 0) {
+                hour = (hour + 1) % 24;
+                if (hour === 0) {
+                    day += 1;
+                }
+            }
+        }
+        alert(day + ' ' + hour + ' ' + minute + ' ' + second);
+    }
+    getLeftTime();
+
+    function getLeftTime1() {
+        var stack = [];
+        stack.push(node);
+        while (!stack.isEmpty()) {
+            var node = stack.pop();
+            document.write(node.data);
+            for (var i = 0, len = node.length; i < len; i++) {
+                stack.push(node[i]);
+            }
+        }
+    }
+
+    var email = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/;
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    function sum(x, y) {
+        return x + y;
+    }
+    Array.prototype.reduce = function(fn, initial) {
+        var i = 0,len = this.length,accumulator = initial;
+        if (!accumulator) {
+            accumulator = this[i++];
+        }
+        while (i < len) {
+            accumulator = fn.call(null, accumulator, this[i], i, this);
+            i++;
+        }
+        return accumulator;
+    };
+    var array = [2,8,23,0,21];
+    alert(array.reduce(sum));
+    alert(array.reduce(sum, 10));
+</script>
+</body>
+</html>

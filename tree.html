@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="jquery.js"></script>
+</head>
+<body>
+<div id="tree" style="width: 400px;margin: 0 auto;">
+    <ul>
+        <li>A</li>
+        <li>B
+            <ul>
+                <li>E</li>
+                <li>F
+                    <ul>
+                        <li>H</li>
+                        <li>I</li>
+                        <li>J
+                            <ul>
+                                <li>K</li>
+                                <li>L</li>
+                                <li>M</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>G</li>
+            </ul>
+        </li>
+        <li>C</li>
+        <li>D
+            <ul>
+                <li>N</li>
+                <li>O</li>
+                <li>P</li>
+                <li>Q</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<script type="text/javascript">
+    var lis = document.getElementsByTagName('li');
+    var openFlags = [];
+    for (var index = 0, len = lis.length; index < len; index++) {
+        var li = lis[index];
+        var childNodes = li.childNodes;
+
+        var hasChildren = false;
+        for (var j = 0, l = childNodes.length; j < l; j++) {
+            var child = childNodes[j];
+            if (child.nodeType === 1 && child.nodeName.toLowerCase() === 'ul') {
+                hasChildren = true;
+            }
+        }
+
+        if (hasChildren) {
+            var ul = li.getElementsByTagName('ul')[0];
+            ul.style.display = 'none';
+            li.style.listStyleImage = 'url(images/folder.gif)';
+            openFlags[openFlags.length] = false;
+
+            li.onclick = (function(li, ul, i) {
+                return function(e) {
+                    e = e || window.event;
+                    var target = e.target || e.srcElement;
+                    if (target === li) {
+                        if (openFlags[i]) {
+                            ul.style.display = 'none';
+                            li.style.listStyleImage = 'url(images/folder.gif)';
+                            openFlags[i] = false;
+                        } else {
+                            ul.style.display = 'block';
+                            li.style.listStyleImage = 'url(images/folder-open.gif)';
+                            openFlags[i] = true;
+                        }
+                    }
+                    if (e && e.stopPropagation) {
+                        e.stopPropagation();
+                    } else {
+                        e.cancelBubble = true;
+                    }
+                }
+            })(li, ul, openFlags.length);
+        } else {
+            li.style.listStyleImage = 'url(images/leaf.gif)';
+        }
+    }
+</script>
+<script type="text/javascript">
+    $(function() {
+        $('li:has(ul)').click(
+                function(e) {
+                    if (this === e.target) {
+                        if ($(this).children().is(':hidden')) {
+                            $(this).css('list-style-image', 'url(images/folder-open.gif)')
+                                    .children().show();
+                        } else {
+                            $(this).css('list-style-image', 'url(images/folder.gif)')
+                                    .children().hide();
+                        }
+                    }
+                    return false;
+                }).css({
+                    cursor: 'pointer',
+                    'list-style-image': 'url(images/folder.gif)'
+                }).children().hide();
+        $('li:not(:has(ul))').css({
+            cursor: 'default',
+            'list-style-image': 'url(images/leaf.gif)'
+        });
+    });
+</script>
+</body>
+</html>

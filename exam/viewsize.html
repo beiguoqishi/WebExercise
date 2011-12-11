@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<div id="main">
+
+</div>
+<div id="content" style="height:2000px;z-index: 2;position: relative;">Java</div>
+<script type="text/javascript">
+    var main = document.getElementById('main');
+//    window.onresize = resize;
+    function resize() {
+        var pageWidth = window.innerWidth,pageHeight = window.innerHeight;
+        if (typeof pageWidth !== 'number') {
+            if (document.compatMode === 'CSS1Compat') {
+                pageWidth = document.documentElement.clientWidth;
+                pageHeight = document.documentElement.clientHeight;
+            } else {
+                pageWidth = document.body.clientWidth;
+                pageHeight = document.body.clientHeight;
+            }
+        }
+        main.style.cssText = 'background-color:red;position:fixed;top:0;left:0;margin:0;padding:0;width:' + pageWidth + 'px;height:' + pageHeight + 'px;';
+    }
+    resize();
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    var sum = 0;
+    function output(result) {
+        for (var i = result.length; i--;) {
+            document.write(result[i] + ' ');
+        }
+        document.write('<br/>');
+        sum++;
+    }
+
+    function compute(score, num, result) {
+        if (score == 0 || score > (num + 1) * 10)
+            return;
+        if (num == 0) {
+            result[num] = score;
+            output(result);
+            return;
+        }
+        for (var i = 0; i <= 10; i++) {
+            result[num] = i;
+            compute(score - i, num - 1,result);
+        }
+    }
+
+    compute(90, 9, []);
+    alert(sum);
+</script>
+</body>
+</html>

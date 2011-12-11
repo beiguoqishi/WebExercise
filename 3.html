@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="jquery.js"></script>
+</head>
+<body>
+<ul id="nav">
+    <!--<li>a</li>-->
+</ul>
+<script type="text/javascript">
+    //    var ul = document.getElementById('nav');
+    //    alert($(ul).init(ul).init(ul).init(ul)[0]);
+    String.prototype.stripHTML = function() {
+        var reg = /<(?:.|\s)*?>/g;
+        reg = /[\w\-]*/g;
+        reg = /^(?:[^<]*(<[\w\W]+>)[^>]*$|#([\w\-]*)$)/;
+//        reg = /^<(\w+)\s*\/?>(?:<\/\1>)?$/;
+        return reg.exec(this);
+    }
+    //    alert("#ab".stripHTML());
+    //    alert('<div>Hello Jquery</div>'.stripHTML());
+    var email = /^[\w-]+(?:\.[\w-]+)*@(?:[\w-]+\.)+[a-zA-Z]+$/;
+    //    alert(email.test('lpt2008303483@yahoo.cn'));
+    //    alert(email.test('lpt2008.-.3.03483@ya.hoo.cn'));
+    var regexp = /<(\w+)>((?:\s|.)*?)<\/\1>/g;
+    var html = '<div>test</div><div>second</div>';
+//    alert(regexp.test(html));
+    var result;
+    while(result = regexp.exec(html)) {
+        alert(result);
+    }
+
+</script>
+</body>
+</html>

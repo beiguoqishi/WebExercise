@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    function pow(a, b) {
+        if (b === 0) {
+            return 1;
+        } else if (b === 1) {
+            return a;
+        } else {
+            if (b % 2) {
+
+                return Math.pow(pow(a, parseInt(b / 2)), 2) * a % 1000;
+            } else {
+                return Math.pow(pow(a, parseInt(b / 2)), 2) % 1000;
+            }
+        }
+    }
+    alert(pow(998,8));
+</script>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="jquery.js"></script>
+</head>
+<body>
+<ul>
+    <li><a href="#">Java</a></li>
+    <li><a href="#">C</a></li>
+    <li><a href="#">CPP</a></li>
+    <li><a href="#">JavaScript</a></li>
+    <li><a href="#">Ruby</a></li>
+</ul>
+<div id="parent">
+    <a href="#">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+</div>
+<a href="#">5</a>
+<script type="application/javascript" version="1.8">
+//    $('<div>Hello Jquery</div>')
+//    var lis = $('li','ul');
+//    for (var i = 0, len = lis.length; i < len; i++) {
+//        var li = lis[i];
+//    }
+//    var els = $('<div class="foo">I\'m the first div.</div><div>I\'m the second div.</div>')
+//    var el = els.filter('.foo')
+//    el.click(
+//            function() {
+//                alert('I\'m foo.');
+//            }).end().appendTo('#parent');
+//    $('#parent').html('size ' + $('a').size());
+//    $('div').add('<div>Added</div>').append();
+//    [1,'34',8,'java'].forEach(function(el, index, arr) {
+//        alert(arr + ' ' + index + ' ' + el);
+//    });
+//    var text = "testing :1, 2, 3";
+//    var regexp = /\d+/;
+//    var scope = 'global';
+//    function a() {
+//        alert(window.scope);
+//        var scope = 'local';
+//        alert(scope);
+//    }
+//    a();
+//    try {
+//        alert(null.x);
+//    } catch(error) {
+//        alert(error.message);
+//    }
+
+//    try {
+//    var y = undefined;
+//    var x = y;
+//    } catch(e) {
+//        alert(e.message);
+//    }
+//    alert(text.search('1'));
+//
+//
+//    alert(text.match(regexp));
+//    alert(text.match(regexp));
+//    alert(text.match(regexp));
+//    alert(text.match(regexp));
+//    var arr = [1,2,'ja',8,'9',23,'34',7,34];
+//    var keys = '';
+//    for (var p in arr) {
+//        keys += arr[p] + ' ';
+//    }
+//    alert(keys);
+//    var a = {x:1,y:2};
+//    var c = Object.create({m:8,n:9});
+//    var b = {p:3,q:4};
+//    var m = {
+//        x:8,
+//        get y() {
+//            return this.x;
+//        },
+//        set y(newvalue) {
+//            this.x = newvalue;
+//        }
+//    };
+//    alert(m.y());
+//    m.y(9);
+//    alert(m.y());
+//    function b() {
+//        function a(d, b, c) {
+//            alert(a.caller.call(null));
+//        }
+//
+//        alert(a.length);
+//        a('j', 'b', 'bd', 'dds');
+//    }
+//    //    b();
+//
+//    function memoize(f) {
+//        var cache = {};
+//        return function() {
+//            var key = arguments.length + Array.prototype.join.call(arguments, ",");
+//            if (key in cache)
+//                return cache[key];
+//            return cache[key] = f.apply(this, arguments);
+//        }
+//    }
+//
+//    function fun() {
+//        alert()
+//    }
+//    alert(fun.toString());
+//
+//    var func = function() {
+//        alert('fn')
+//    };
+//
+//    alert(func.toString());
+function A() {
+    function F() {
+    }
+
+    return Number;
+}
+
+//    alert(new A())
+
+function inherits(o) {
+    function F() {
+    }
+
+    F.prototype = o;
+    return new F();
+}
+
+function enumeration(obj) {
+//        var enumeration = function() {
+//            throw "Can't initialize the constructor;"
+//        };
+
+    enumeration.prototype = {
+        constructor:enumeration,
+        toString:function() {
+            return this.name;
+        },
+        valueOf:function() {
+            return this.value;
+        },
+        toJSON: function() {
+            return this.name
+        }
+    };
+
+    enumeration.values = [];
+
+    for (var name in obj) {
+        var e = inherits(enumeration.prototype);
+        e.name = name;
+        e.value = obj[name];
+        enumeration[name] = e;
+        enumeration.values.push(e);
+    }
+
+    enumeration.forEach = function(f, context) {
+        for (var i = 0,len = enumeration.values.length; i < len; i++) {
+            f.call(context, enumeration.values[i]);
+        }
+    }
+
+    return enumeration;
+}
+var regexp = /^\w(([\w-]*)\.)*([\w-]+)@([\w-]+)(\.[\w-]*)*(\.\w+)$/g;
+regexp = /.*b/;
+//alert(regexp.test('lpt-2..0--0.8303483@yah-oo.cbn'));
+
+var obj = {Penny: 1, Nickel:5, Dime:10, Quarter:25};
+var Coin = enumeration({Penny: 1, Nickel:5, Dime:10, Quarter:25});
+var A = enumeration({Two: 2, Three: 3, Four: 4, Five: 5, Six: 6,Seven: 7, Eight: 8, Nine: 9, Ten: 10,Jack: 11, Queen: 12, King: 13, Ace: 14});
+//    alert(Coin == A);
+var c = Coin.Dime; // This is an instance of the new class
+c instanceof Coin // => true: instanceof works
+c.constructor == Coin // => true: constructor property works
+Coin.Quarter + 3 * Coin.Nickel // => 40: values convert to numbers
+Coin.Dime == 10 // => true: more conversion to numbers
+Coin.Dime > Coin.Nickel // => true: relational operators work
+String(Coin.Dime) + ":" + Coin.Dime // => "Dime:10": coerce to string
+//    alert(c + '');
+//    alert(c.constructor === Coin)
+var obj = {
+    name:'obj',
+    valueOf: function() {
+        return "79";
+    }
+};
+//    alert(obj instanceof Date);
+//    obj.constructor = Date;
+//    alert(obj instanceof Date);
+//    obj.__proto__.constructor = Date;
+//    alert(obj instanceof Date);
+//    alert(3 < obj);
+function Parent() {
+}
+function Child() {
+}
+
+function F() {
+}
+
+//    F.prototype = Parent.prototype;
+Child.prototype = new F();
+Child.prototype.constructor = undefined;
+
+var child = new Child();
+//    alert(child.constructor);
+
+//    var Coin = enumeration({Penny: 1, Nickel:5, Dime:10, Quarter:25});
+//    var a = new enumeration({});
+//    //    alert(a.constructor);
+//    var o = Object.create({x:1});
+//    alert(inherits({y:8,constructor:enumeration}).constructor);
+
+var sToMatch = 'abbbaabbb12';
+var re1 = /.*bbb/g; //贪婪 匹配:abbbaabbb
+var re2 = /.*?bbb/g; //非贪婪 匹配:abbb aabbb
+var re3 = /(^<(\w+)\s*\/?>(?:<\/\1>)?$)/g;
+//    var a;
+//    var b;
+//alert(re3.test(sToMatch));
+function searchHTML() {
+    var reg = /(?:<(\w+)[^\/>]*\/?>)(?:((?:.|\n)*?)<\/\1>)?/g;
+    var str = "<a href='#'>Open the door.</a> java<div id='test'>This is a div</div><br/> <p id='desc'>I'm a student.</p>";
+    var result;
+    while (result = reg.exec(str)) {
+        alert(result);
+    }
+}
+//searchHTML();
+
+var reg = /(\d{4}) (\d{3})/g;
+//alert("1234 567".replace(reg,'$2 $1'));
+reg = /<(\w+)\s*(\w+\s*=\s*('|").*?\3\s*)*>.*?<\/\1>/g;
+//alert("<td id=\'td1\' style=\"bgcolor:white\"></td>".match(reg));
+//alert(RegExp.$1)
+//alert(RegExp.$2)
+//alert(RegExp.$3)
+//alert(RegExp.$4)
+//alert(RegExp.$5)
+function testBeforehandSearch() {
+    var reg = /(\w)((?=\1\1\1)\1)+/g;
+    var str = "aaa ffffff 999999999";
+    //ffff 9999999
+//    alert(str.match(reg));
+
+    reg = /\d/g;
+//    alert("1,23,45df'".match(reg));
+
+    //先取一个，再下一匹配位置进行预搜索。
+    reg = /(.(?!\bstop\b))+/g;
+    var str = "fdjka ljfdl stop fjdsla fdj";
+    //'fdjka ljfdl','stop fjdsla fdj'
+//    alert(str.match(reg));
+//    alert(str);
+    reg = /([\w\s]+?)(\bstop)(\w*)/g;
+    alert(reg.exec(str));
+
+
+    //先进行预搜索，再取预搜索中的第一个字符。
+    reg = /((?!\bstop\b).)+/g;
+    var str = "fdjka ljfdl  stop fjdsla fdj";
+    //'fdjka ljfdl ','top fjdsla fdj'
+    alert(str.match(reg));
+}
+//testBeforehandSearch();
+var sToMatch = 'this has been a short, short summer';
+var reg = /(s)hort/g;
+reg.test(sToMatch);
+//alert(RegExp.input);//this has been a short, short summer
+//alert(RegExp.leftContext);//this has been a
+//alert(RegExp.rightContext);//, short summer
+//alert(RegExp.lastMatch);//short
+//alert(RegExp.lastParen);//s
+//alert(RegExp.$1);//s
+//alert(RegExp.$2);//空 注，不是没有而是空
+
+</script>
+<a href="javascript:window.open();">Open new window.</a>
+<a>Test</a>
+<a href="javascript:new Date().toLocaleTimeString();">
+What time is it?
+</a>
+<div id="bridge" style="height: 1002px;background: red;"></div>
+<div id="bottom" style="height: 300px;background: green;margin-top: 30px;"></div>
+Arrive Date:<input type="text" name="arrival" placeholder="yyyy-mm-dd"/>
+<div id="editor" contenteditable>
+Click to edit
+</div>
+</body>
+</html>

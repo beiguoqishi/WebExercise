@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        #parent {
+            margin: 20px;
+            width: 500px;
+            height: 100px;
+            background: blue;
+            padding: 100px;
+            border: 1px solid red;
+            overflow: scroll;
+        }
+
+        #child {
+            margin: 30px;
+            width: 800px;
+            height: 800px;
+            background: red;
+            padding: 20px;
+            border: 2px solid yellow;
+        }
+    </style>
+    <script type="text/javascript">
+        //        alert('')
+        window.onload = function() {
+            window.onclick = function(e) {
+                alert(e.clientX + ' ' + e.clientY);
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="parent" style="font: 13px;">
+    <div id="child"></div>
+</div>
+</body>
+</html>

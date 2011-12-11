@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        .a {
+            background: red;
+            color: white;
+            font-size: 12px;
+        }
+
+        #test {
+            width: 30px;
+            height: 20px;
+            padding: 30px;
+        }
+    </style>
+</head>
+<body>
+<iframe name="edit" width="400" height="400"></iframe>
+<script type="text/javascript">
+    onload = function() {
+        frames["edit"].document.designMode = 'on';
+    }
+</script>
+<div id="test" style="width:200px;height: 200px;border: 3px solid red;padding: 30px;background: green;margin: 40px;box-sizing: border-box;"></div>
+</body>
+</html>

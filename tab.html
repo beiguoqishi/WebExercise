@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="jquery.js"></script>
+</head>
+<body>
+<input type="button" value="click"/>
+
+<div id="content">This is a div.</div>
+<div id="img" style="display: none;">
+    <img src="images/slide.jpg" alt=""/>
+</div>
+<script type="text/javascript">
+
+    function dimension(el) {
+        if (!el.cache) {
+            el.cache = {
+                width:el.offsetWidth,
+                height:el.offsetHeight
+            }
+        }
+        return el.cache;
+    }
+
+    HTMLElement.prototype.slideDown = function(time, fn) {
+        var display = this.style.display;
+        if (display.trim() !== 'none') {
+            return;
+        }
+        var that = this;
+        this.style.overflow = 'hidden';
+
+        this.style.display = 'block';
+        this.style.visibility = 'hidden';
+        var step = 5,width = dimension(this).width,height = dimension(this).height,currentHeight = 0,stepHeight = step * height / time;
+
+        var interval = setInterval(function() {
+            if (currentHeight >= height) {
+                clearInterval(interval);
+                fn();
+            } else {
+                currentHeight += stepHeight;
+                that.style.height = currentHeight + 'px';
+                if (that.style.visibility === 'hidden') {
+                    that.style.visibility = 'visible';
+                }
+            }
+        }, step);
+    };
+
+    HTMLElement.prototype.slideUp = function(time, fn) {
+        var display = this.style.display;
+        if (display.trim() === 'none') {
+            return;
+        }
+        var that = this;
+        this.style.overflow = 'hidden';
+
+        var step = 5,width = dimension(this).width,height = dimension(this).height,currentHeight = height,stepHeight = step * height / time;
+        var interval = setInterval(function() {
+            if (currentHeight <= 0) {
+                clearInterval(interval);
+                that.style.display = 'none';
+                fn();
+            } else {
+                currentHeight -= stepHeight;
+                that.style.height = currentHeight + 'px';
+            }
+        }, step);
+    };
+
+    $(function() {
+        $('input[type=button]').click(function(e) {
+            var slideDown = function() {
+                document.getElementById('img').slideDown(1000, function() {
+                    slideUp();
+                });
+            };
+            var slideUp = function() {
+                document.getElementById('img').slideUp(1000, function() {
+                    slideDown();
+                });
+            };
+            slideDown();
+//            document.getElementById('img').slideDown(1000, function() {
+//                document.getElementById('img').slideUp(1000, function() {
+//
+//                });
+//            });
+//            $('img').animate({
+//                width:'100%',
+//                height:'100%',
+//                height:'toggle',
+//                opacity:'toggle'
+//            }, 1000);
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<div id="inputselect" style="position: relative;">
+    <input id="age" type="text" style="position: absolute;width: 200px;left: 0;top:0;z-index: 1;">
+    <select id="options" style="position: absolute;width: 220px;left: 0;top: 0;">
+        <option></option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+    </select>
+</div>
+<script type="text/javascript">
+    document.documentElement.onkeyup = function(event) {
+        event = event || window.event;
+        alert(event.keyCode)
+    }
+    var regexp = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/g;
+    alert(regexp.test('lpt2008303483@yahoo.cn'));
+</script>
+</body>
+</html>

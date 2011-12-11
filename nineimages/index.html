@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <title>Nine Images</title>
+    <style type="text/css">
+        .grid {
+            width: 977px;
+            height: 506px;
+            position: relative;
+            margin: 60px auto;
+            overflow: hidden;
+        }
+
+        .grid > div {
+            width: 338px;
+            height: 165px;
+            position: absolute;
+            cursor: pointer;
+            /*-webkit-transition: all 0.3s ease-out;*/
+            /*-moz-transition: all 0.3s ease-out;*/
+            /*-ms-transition: all 0.3s ease-out;*/
+            /*-o-transition: all 0.3s ease-out;*/
+            z-index: 0;
+        }
+
+        .a {
+            left: 0;
+        }
+
+        .b {
+            left: 350px;
+        }
+
+        .c {
+            left: 700px;
+        }
+
+        .one {
+            top: 0;
+        }
+
+        .two {
+            top: 175px;
+        }
+
+        .three {
+            top: 350px;
+        }
+
+        .a1 {
+            background: url("images/a1.jpg") 0 0 no-repeat;
+        }
+
+        .a2 {
+            background: url("images/a2.jpg") 0 -175px no-repeat;
+        }
+
+        .a3 {
+            background: url("images/a3.jpg") 0 -350px no-repeat;
+        }
+
+        .b1 {
+            background: url("images/b1.jpg") -350px 0 no-repeat;
+        }
+
+        .b2 {
+            background: url("images/b2.jpg") -350px -175px no-repeat;
+        }
+
+        .b3 {
+            background: url("images/b3.jpg") -350px -350px no-repeat;
+        }
+
+        .c1 {
+            background: url("images/c1.jpg") -700px 0 no-repeat;
+        }
+
+        .c2 {
+            background: url("images/c2.jpg") -700px -175px no-repeat;
+        }
+
+        .c3 {
+            background: url("images/c3.jpg") -700px -350px no-repeat;
+        }
+
+        .grid > div.toggle {
+        }
+    </style>
+</head>
+
+<body>
+<div id="grid" class="grid">
+    <div class="a one a1"></div>
+    <div class="a two a2"></div>
+    <div class="a three a3"></div>
+
+    <div class="b one b1"></div>
+    <div class="b two b2"></div>
+    <div class="b three b3"></div>
+
+    <div class="c one c1"></div>
+    <div class="c two c2"></div>
+    <div class="c three c3"></div>
+</div>
+<script type="text/javascript">
+    var container = document.getElementById('grid');
+    var boxes = container.getElementsByTagName('div');
+
+    var zIndex = 2;
+    for (var j = 0, len = boxes.length; j < len; j++) {
+        var box = boxes[j];
+        box.onclick = function() {
+            if (/\btoggle\b/.test(this.className)) {
+                this.className = this.className.replace(/\btoggle\b/, '');
+                slide(this, 977, 338, 506, 165, 1000);
+                this.style.cssText = '';
+            } else {
+                this.style.cssText = 'top:0;left:0;background-position:0 0;';
+                slide(this, 338, 977, 165, 506, 1000);
+                this.style.zIndex = zIndex++;
+                this.className += ' toggle';
+            }
+        }
+    }
+
+    function slide(div, fromWidth, toWidth, fromHeight, toHeight, time) {
+
+        var slideWidth = toWidth - fromWidth;
+        var slideHeight = toHeight - fromHeight;
+
+        var begin = new Date().getTime();
+
+        function animate() {
+            var now = new Date().getTime();
+            var elapsed = now - begin;
+            if (elapsed > time) {
+                div.style.cssText += ';width:' + toWidth + 'px;height:' + toHeight + 'px;';
+                return;
+            }
+
+            var factor = Math.sin(Math.PI * 0.5 * (elapsed / time));
+            var width = fromWidth + slideWidth * factor;
+            var height = fromHeight + slideHeight * factor;
+
+            div.style.cssText += ';width:' + width + 'px;height:' + height + 'px;';
+
+            setTimeout(animate, Math.min(5, time - elapsed));
+        }
+
+        setTimeout(animate, 5);
+    }
+</script>
+</body>
+
+</html>

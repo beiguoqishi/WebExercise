@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    function maxIncreaseSubsequence1(array) {
+        var maxSeq = [];
+        for (var i = 0, len = array.length; i < len; i++) {
+            var start = array[i],subSeq = [start],last = start;
+            for (var j = i + 1; j < len; j++) {
+                if (array[j] > last) {
+                    subSeq.push(array[j]);
+                    last = array[j];
+                }
+            }
+            if (subSeq.length > maxSeq.length) {
+                maxSeq = subSeq;
+            }
+        }
+        return maxSeq;
+    }
+
+//    var array = [1,-1,1,-3,4,-5,6,-7,4,-2,-1,0,1,2,8,9,-8,1,8,-8];
+    var array=[-1,-1,-1,-2,1,2,3,4,5,6];
+    alert(maxIncreaseSubsequence1(array));
+</script>
+</body>
+</html>

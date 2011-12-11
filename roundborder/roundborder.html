@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .tabs {
+            width: 800px;
+            margin: 100px auto;
+            list-style: none;
+        }
+
+        .tabs li {
+            float: left;
+            position: relative;
+        }
+
+        .tabs li a {
+            float: left;
+            padding: 10px 40px;
+            color: #000000;
+            text-decoration: none;
+            background-color: #deb887;
+            -webkit-border-top-left-radius: 15px;
+            -webkit-border-top-right-radius: 15px;
+            -moz-border-radius-topleft: 15px;
+            -moz-border-radius-topright: 15px;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .tabs .active {
+            z-index: 3;
+        }
+
+        .tabs .active a {
+            background-color: #ff8c00;
+        }
+
+        .tabs li:before, .tabs li:after, .tabs li a:before, .tabs li a:after {
+            position: absolute;
+            bottom: 0;
+        }
+
+        .tabs li:first-child:before, .tabs li:first-child a:before,
+        .tabs li:last-child:after, .tabs li:last-child a:after,
+        .tabs li.active:before, .tabs li.active a:before,
+        .tabs li.active:after, .tabs li.active a:after {
+            content: "";
+        }
+
+        .tabs .active:before, .tabs .active:after {
+            z-index: 1;
+        }
+
+        .tabs li:before, .tabs li:after {
+            background-color: #deb887;
+            width: 10px;
+            height: 10px;
+        }
+
+        .tabs .active:before, .tabs .active:after {
+            background-color: #ff8c00;
+        }
+
+        .tabs li:before {
+            left: -10px;
+        }
+
+        .tabs li:after {
+            right: -10px;
+        }
+
+        .tabs li a:before, .tabs li a:after {
+            background-color: #deb887;
+            width: 20px;
+            height: 20px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            z-index: 2;
+        }
+
+        .tabs li a:before {
+            left: -20px;
+        }
+
+        .tabs li a:after {
+            right: -20px;
+        }
+
+        .tabs li:first-child a:before, .tabs li:last-child a:after {
+            background-color: white;
+        }
+
+        #content {
+            clear: both;
+            background: #ff8c00;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+<ul id="tabs" class="tabs">
+    <li><a href="#one">one</a></li>
+    <li><a href="#two">two</a></li>
+    <li><a href="#three">three</a></li>
+    <li class="active"><a href="#four">four</a></li>
+</ul>
+<div id="content">This is some content.</div>
+<script type="text/javascript">
+    var lis = document.getElementById('tabs').getElementsByTagName('li');
+
+    for (var i = 0, len = lis.length; i < len; i++) {
+        var li = lis[i];
+        li.onclick = function() {
+            for (var j = 0; j < len; j++) {
+                lis[j].className = '';
+            }
+            this.className = 'active';
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            text-align: center;
+        }
+
+        img {
+            border: none;
+            float: left;
+        }
+
+        div.main {
+            position: relative;
+            width: 490px;
+            height: 170px;
+            margin: 100px auto;
+        }
+
+        div.box {
+            width: 490px;
+            height: 170px;
+            /*margin: 100px auto;*/
+            overflow: hidden;
+        }
+
+        ul.images {
+            list-style: none;
+            /*width: 2450px;*/
+        }
+
+        ul.images li {
+            float: left;
+        }
+
+        ul.adNav {
+            list-style: none;
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            z-index: 10;
+        }
+
+        ul.adNav li {
+            font: normal 13px 'arial';
+            /*font-family: arial,serif;*/
+            float: left;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            color: #DE7D4B;
+            background-color: white;
+            opacity: .7;
+            margin-left: 3px;
+            cursor: pointer;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+        }
+
+        ul.adNav li.active {
+            font-weight: bolder;
+            background-color: #F60;
+            color: white;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+<div id="main" class="main">
+    <div id="box" class="box">
+        <ul id="images" class="images">
+            <li>
+                <a href="#">
+                    <img src="images/ad1.png" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="images/ad2.gif" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="images/ad3.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="images/ad4.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="images/ad5.png" alt="">
+                </a>
+            </li>
+        </ul>
+    </div>
+    <ul id="adNav" class="adNav">
+        <li class="active">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+</div>
+
+<div id="main1" class="main">
+    <div id="box1" class="box">
+        <ul id="images1" class="images">
+            <li>
+                <a href="#">
+                    <img src="images/ad6.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="images/ad7.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="images/ad8.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="images/ad9.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="images/ad10.png" alt="">
+                </a>
+            </li>
+        </ul>
+        <ul id="adNav1" class="adNav">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+    window.onload = function() {
+        var $ = function() {
+            return document.getElementById.call(document, arguments[0])
+        };
+
+        function Scroller() {
+            this.init.apply(this, arguments);
+            this.intervalShow();
+        }
+
+        Scroller.prototype = {
+            init: function(shell, box, imageUl, navUl, visibleSize, time, direction, picWidth, picHeight) {
+                var imageList = imageUl.getElementsByTagName('li');
+                var navList = navUl.getElementsByTagName('li');
+                if (imageList.length !== navList.length) {
+                    throw new Error('图片数必须与导航条的数目相同');
+                }
+                this.shell = shell;
+                this.box = box;
+                this.imageList = imageList;
+                this.navList = navList;
+                this.size = imageList.length;//图片数目
+
+                this.currentIndex = 0;//当前正在显示的图片索引
+                this.visibleSize = visibleSize || 170;//一个图片的宽或高
+                this.time = time || 500;//滑动一个图片所用时间
+                this.sliding = false;//是否处于滑动状态
+                this.timeout = null;//超时句柄
+                this.direction = direction || 'vertical';
+
+                this.shell.style.cssText += ';position:relative;height:' + picHeight + 'px;width:' + picWidth + 'px;';
+                this.box.style.cssText += ';overflow:hidden;height:' + picHeight + 'px;width:' + picWidth + 'px;';
+
+                if (this.direction === 'vertical') {//垂直滑动
+                    imageUl.style.cssText += ';width:' + picWidth + 'px;height:' + this.size * picHeight + 'px;';
+                    this.direction = 'scrollTop';
+                } else {//水平滑动
+                    imageUl.style.cssText += ';width:' + picWidth * this.size + 'px;height:' + picHeight + 'px;';
+                    this.direction = 'scrollLeft';
+                }
+
+                //为每个导航li注册mouseover与click事件
+                for (var i = 0, len = this.navList.length; i < len; i++) {
+                    var navLi = this.navList[i];
+                    var that = this;//为了在闭包中使用当前对象
+                    navLi.onmouseover = navLi.onclick = (function(index) {
+                        return function(e) {
+                            if (that.sliding) {//如果还有处于滑动状态中的li，则清理timeout并将位置设置到先前最终应该到达的位置,为了防止出现频繁闪烁的现象
+                                clearTimeout(that.timeout);
+                                that.box.scrollTop = that.currentIndex * that.visibleSize;
+                            }
+                            e = e || window.event;
+                            var target = e.target || e.srcElement;
+
+                            that.slide.call(that, target, index);//在闭包内调用slide函数
+                        }
+                    })(i);
+                }
+            },
+            slide:function(target, index) {
+                if (Array.prototype.indexOf.call(this.navList, target) === this.currentIndex)
+                    return;
+
+                var finalScrollPosition = index * this.visibleSize;//最终要定位到的位置
+                var currentScrollPosition = this.currentIndex * this.visibleSize;//当前位置
+
+                for (var j = 0,len = this.navList.length; j < len; j++) {//清除每个导航Li的样式
+                    var li = this.navList[j];
+                    li.className = '';
+                }
+
+                target.className = 'active';//设置当前li为激活状态
+
+                var moveSize = finalScrollPosition - currentScrollPosition;//本次要移动的长度
+                var begin = new Date().getTime();
+
+                this.currentIndex = index;
+                var that = this;
+
+                function animate() {//动画显示，用正统函数模拟动画效果
+                    this.sliding = true;//处于滑动状态
+                    var now = new Date().getTime();
+                    var elapsed = now - begin;
+
+                    if (elapsed >= this.time) {
+                        this.box[this.direction] = finalScrollPosition;
+                        this.sliding = false;//滑动结束
+                        return;
+                    }
+
+                    var distance = currentScrollPosition + moveSize * Math.sin(Math.PI * 0.5 * (elapsed / this.time));
+                    this.box[this.direction] = distance;
+                    this.timeout = setTimeout(function() {
+                        animate.call(that);//再次调用
+                    }, Math.min(25, this.time - elapsed));
+                }
+
+                this.timeout = setTimeout(function() {
+                    animate.call(that);//开始动画
+                }, 25);
+            },
+            intervalShow:function() {//间隔显示
+                var that = this;
+                setTimeout(function() {
+                    var index = (that.currentIndex + 1) % that.navList.length;
+                    that.slide(that.navList[index], index);
+                    setTimeout(arguments.callee, 3000);//每隔3秒自动显示一次
+                }, 3000);
+            }
+        };
+
+        new Scroller($('main'), $('box'), $('images'), $('adNav'), 490, 500, 'horizontal', 490, 170);//水平滑动
+        new Scroller($('main1'), $('box1'), $('images1'), $('adNav1'), 170, 500, 'vertical', 490, 170);
+
+//        var box = $('box');
+//        var imageList = $('images').getElementsByTagName('li');
+//        var navList = $('adNav').getElementsByTagName('li');
+
+//        var currentIndex = 0;
+//        var visibleHeight = 170;
+//        var time = 500;
+//        var sliding = false;
+//        var timeout;
+//        for (var i = 0, len = navList.length; i < len; i++) {
+//            var navLi = navList[i];
+//            navLi.onmouseover = navLi.onclick = (function(index) {
+//                return function(e) {
+//                    if (sliding) {
+//                        clearTimeout(timeout);
+//                        box.scrollTop = currentIndex * visibleHeight;
+//                    }
+//                    e = e || window.event;
+//                    var target = e.target || e.srcElement;
+//
+//                    slide(target, index);
+//                }
+//            })(i);
+//        }
+//
+//        function slide(target, index) {
+//            if (Array.prototype.indexOf.call(navList, target) === currentIndex)
+//                return;
+//
+//            var finalScrollTop = index * visibleHeight;
+//            var currentScrollTop = currentIndex * visibleHeight;
+//
+//            for (var j = 0; j < len; j++) {
+//                var li = navList[j];
+//                li.className = '';
+//            }
+//
+//            target.className = 'active';
+//
+//            var moveHeight = finalScrollTop - currentScrollTop;
+//            var begin = new Date().getTime();
+//
+//            currentIndex = index;
+//            function animate() {
+//                sliding = true;
+//                var now = new Date().getTime();
+//                var elapsed = now - begin;
+//
+//                if (elapsed >= time) {
+//                    box.scrollTop = finalScrollTop;
+//                    sliding = false;
+//                    return;
+//                }
+//
+//                var distance = currentScrollTop + moveHeight * Math.sin(Math.PI * 0.5 * (elapsed / time));
+//                box.scrollTop = distance;
+//                timeout = setTimeout(animate, Math.min(25, time - elapsed));
+//            }
+//
+//            timeout = setTimeout(animate, 25);
+//        }
+
+//        setTimeout(function() {
+//            var index = (currentIndex + 1) % navList.length;
+//            slide(navList[index], index);
+//            setTimeout(arguments.callee, 3000);
+//        }, 3000);
+    }
+</script>
+</body>
+</html>

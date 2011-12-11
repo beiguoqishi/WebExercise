@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    function fibonacci(n) {
+        if (typeof arguments.callee[n] !== 'number') {
+            var result;
+            if (n <= 0) {
+                result = 0;
+            } else if (n === 1) {
+                result = 1;
+            } else {
+                result = arguments.callee(n - 1) + arguments.callee(n - 2);
+            }
+            arguments.callee[n] = result;
+        }
+        return arguments.callee[n];
+    }
+    alert(fibonacci(12000));
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    function gcd(x, y) {
+        return  !y ? x : arguments.callee(y, x % y);
+    }
+    alert(gcd(88,16));
+    function norecursive(x,y) {
+        while (y) {
+            var k = y;
+            y = x % y;
+            x = k;
+        }
+        return x;
+    }
+    alert(norecursive(16,88));
+</script>
+</body>
+</html>

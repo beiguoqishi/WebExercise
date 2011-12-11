@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        #test {
+            background: yellow;
+            +background: blue;
+        }
+
+        /**+html #test {*/
+            /*background: red;*/
+        /*}*/
+
+        /*html>*//**//*body #test {*/
+            /*background: blue;*/
+        /*}*/
+
+        #outer {
+            position: fixed;
+            margin: 0 auto 0 300px;
+            height: 300px;
+            width: 300px;
+            background: yellow;
+        }
+
+        #inner {
+            position: absolute;
+            height: 100px;
+            width: 100px;
+            background: red;
+            top: 20px;
+            left: 30px;
+        }
+
+        a.nav {
+            margin: 10px;
+            background: green;
+            color: white;
+            padding: 10px;
+            height: 300px;
+            width: 300px;
+            display: block;
+            line-height: 600px;
+            /*display: inline;*/
+            /*display: table;*/
+        }
+    </style>
+</head>
+<body>
+<script type="text/javascript">
+    //    alert(Function.prototype)
+    var obj = {};
+    obj.name = 'This is a object';
+    function outer(a, b) {
+//        function test() {
+//            alert(this.name);
+//            alert(test.callee);
+//        }
+//        test();
+//        test.call(obj);
+//        alert(outer.caller)
+        alert(arguments.length)
+        return "value";
+    }
+    //    obj.valueOf = function() {
+    //        return "1";
+    //    }
+    //    alert(typeof obj.valueOf());
+    //    alert(new outer());
+    //    alert(outer.caller)
+    //    alert(NaN == NaN);
+    //    alert(NaN === NaN);
+    //    alert(null == undefined);
+    //    alert(null === undefined);
+    //    alert(obj == true);
+    //    alert(outer.length);
+    //    outer("java","first","cpp");
+    var Dog = function(message) {
+        this.message = message;
+        this.shout = function() {
+            alert(this.message);
+        };
+        this.waitAndShout = function() {
+            var that = this;
+            setTimeout(function() {
+                that.shout();
+            }, 0);
+        }
+    };
+    var dog = new Dog('A dog');
+    dog.waitAndShout();
+</script>
+<div id="outer">
+    <div id="inner"></div>
+</div>
+<div id="test">
+    This is a div.
+</div>
+<div style="height: 1px;line-height: 1px;background: red;overflow: hidden;"></div>
+<a href="#" class="nav">Java</a><a href="#" class="nav">C++</a>
+<a href="#" id="bg_demo" style="background: blue url('bg3.gif') -200px 0px no-repeat;width: 300px;color:white;height: 40px;display: block;">This is a background test in a.</a>
+<script type="text/javascript">
+    alert('java cpp'.match(/\bjava\b/));
+</script>
+</body>
+</html>
