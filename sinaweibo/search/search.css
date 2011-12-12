@@ -1,0 +1,349 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    border: none;
+}
+
+.sep {
+    color: #cccccc;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.header-container {
+    height: 35px;
+    background: url("images/header_bg.png") repeat-x;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.header-container .header {
+    width: 960px;
+    margin: 0 auto;
+    height: 35px;
+    position: relative;
+}
+
+.header-container .header a {
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.header-container .header .logo {
+    width: 163px;
+    height: 30px;
+    float: left;
+    background: url("images/logo.png") no-repeat;
+}
+
+.header-container .header ul {
+    float: left;
+}
+
+.header-container .header li {
+    height: 33px;
+    float: left;
+    margin: 0 1px;
+    position: relative;
+    line-height: 33px;
+}
+
+.header-container .header li a.header-nav-link {
+    float: left;
+    padding: 0 15px;
+    height: 33px;
+    line-height: 33px;
+}
+
+.header-container .header li a.header-nav-link:hover {
+    background-color: #000000;
+}
+
+.header-container .header .drop-down {
+    position: absolute;
+    top: 33px;
+    right: 0;
+    border: 1px solid #888888;
+    border-top: none;
+    padding: 0 10px;
+    background: url("images/layer_bg.png");
+    width: 120px;
+    font-size: 12px;
+}
+
+.header-container .header .drop-down a {
+    font-size: 12px;
+    color: #cccccc;
+}
+
+.header-container .header .drop-down .drop-down-header {
+    margin: 5px 0;
+    width: 120px;
+    height: 25px;
+    line-height: 25px;
+}
+
+.header-container .header .drop-down .drop-down-content-list {
+    padding: 2px 0;
+    width: 120px;
+}
+
+.header-container .header .drop-down .drop-down-content-list li {
+    margin: 0 0 5px 0;
+    width: 120px;
+    float: left;
+    height: 25px;
+    line-height: 25px;
+}
+
+.header-container .header .drop-down .drop-down-content-list li a {
+    float: left;
+    height: 25px;
+    width: 115px;
+    line-height: 25px;
+    font-size: 12px;
+    _height: 17px;
+    _line-height: 17px;
+    _padding: 4px 0 0 0;
+    padding-left: 5px;
+}
+
+.header-container .header .drop-down .drop-down-content-list li a:hover {
+    background: #999999;
+}
+
+.header-container .header .drop-down .drop-down-content-list li a img {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.header-container .header .header-nav .plaza .plaza-content-header span {
+    float: left;
+}
+
+.header-container .header .header-nav .plaza .plaza-content-header a {
+    float: right;
+}
+
+.header-container .header .header-nav .plaza .plaza-content-list {
+    border-top: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+}
+
+.header-container .header .header-nav .plaza .plaza-content .plaza-content-more {
+    margin: 10px 0;
+}
+
+.header-container .header .header-nav .plaza .plaza-content .plaza-content-more a {
+    color: #20b2aa;
+    float: right;
+}
+
+/*begin app*/
+.header-container .header .header-nav .app .apps {
+    width: 454px;
+    padding: 5px 3px 5px 3px;
+    font-size: 12px;
+}
+
+.header-container .header .header-nav .app .apps .apps-list {
+    float: right;
+    border-left: 1px solid #777777;
+    padding-left: 3px;
+    _margin-right: -2px;
+}
+
+.header-container .header .header-nav .app .apps .apps-list li a img {
+    _margin-left: 5px;
+}
+
+/*begin app recommends*/
+.header-container .header .header-nav .app .apps .app-recommends {
+    padding: 0 10px 0 0;
+    float: left;
+    width: 320px;
+}
+
+.header-container .header .header-nav .app .apps .app-recommends .app-recommends-header {
+    height: 25px;
+    line-height: 25px;
+    padding-left: 10px;
+}
+
+.header-container .header .header-nav .app .apps .app-recommends .app-recommends-header .app-recommends-header-title {
+    float: left;
+}
+
+.header-container .header .header-nav .app .apps .app-recommends .app-recommends-header .app-recommends-header-more {
+    float: right;
+}
+
+.header-container .header .header-nav .app .apps .app-recommends .app-recommends-header .app-recommends-header-more a {
+    margin: 0 5px;
+    color: #ff8c00;
+}
+
+.header-container .header .header-nav .app .apps .app-recommends .app-recommends-list {
+    margin: 10px 0 0 0;
+}
+
+.header-container .header .header-nav .app .apps .app-recommends .app-recommends-list .app-recommends-item {
+    margin: 0 10px 10px 10px;
+    width: 60px;
+    height: 100px;
+    float: left;
+    display: inline;
+    line-height: normal;
+}
+
+.header-container .header .header-nav .app .apps .app-recommends .app-recommends-list .app-recommends-item div {
+    height: 50px;
+    width: 60px;
+    position: relative;
+}
+
+.header-container .header .header-nav .app .apps .app-recommends .app-recommends-list .app-recommends-item div a {
+    float: left;
+    width: 60px;
+    height: 50px;
+    position: absolute;
+    background: url("images/applist_bg_50.png") 1px 0;
+    top: 0;
+    left: 0;
+    z-index: 20;
+}
+
+.header-container .header .header-nav .app .apps .app-recommends .app-recommends-list .app-recommends-item img {
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 0 auto;
+}
+
+.header-container .header .header-nav .app .apps .app-recommends .app-recommends-list .app-recommends-item .app-recommends-item-title {
+    float: left;
+    margin-top: 10px;
+    color: #0053a5;
+}
+
+.header-container .header .header-nav .app .apps .app-recommends .app-recommends-list .app-recommends-item p {
+    float: left;
+    width: 60px;
+    overflow: hidden;
+}
+
+.header-container .header .header-nav .app .apps .app-recommends .app-recommends-list .app-recommends-item p em {
+    float: left;
+    background: url("images/app_suggest.png") no-repeat;
+    width: 60px;
+    height: 16px;
+    margin: 10px 9px;
+}
+
+/*begin search*/
+.header-container .header .search {
+    float: left;
+    height: 25px;
+    margin: 5px 0 0 30px;
+    width: 200px;
+    background: url("images/search_bg.png") no-repeat;
+    overflow: hidden;
+}
+
+.header-container .header .search .search-input {
+    display: inline-block;
+    float: left;
+    height: 22px;
+    line-height: 23px;
+    width: 156px;
+    margin-top: 2px;
+    margin-left: 2px;
+    padding: 0 5px 0 9px;
+    border: none;
+    background: none;
+    *margin-left: -28px;
+}
+
+.header-container .header .search .search-button {
+    display: inline-block;
+    float: left;
+    height: 22px;
+    line-height: 22px;
+    width: 22px;
+}
+
+.header-container .header .person li a.header-nav-link {
+    font-size: 12px;
+    padding: 0 9px;
+}
+
+.header-container .header .person .account .account-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #777777;
+}
+
+.header-container .header .person .account .username dt, .header-container .header .person .account .username dd {
+    float: left;
+    height: 30px;
+}
+
+.header-container .header .person .account .username dd {
+    line-height: 16px;
+    margin-left: 5px;
+}
+
+.header-container .header .person .account ul {
+    padding: 5px 0;
+}
+
+.header-container .header .person .account ul li {
+    margin-bottom: 7px;
+}
+
+.header-container .header .person .account .exit {
+    float: left;
+    padding: 5px 0;
+    height: 25px;
+    line-height: 25px;
+}
+
+.header-container .header .person .account .exit a {
+    padding-left: 5px;
+    float: left;
+    height: 25px;
+    line-height: 25px;
+    width: 115px;
+    _height: 17px;
+    _line-height: 17px;
+    _padding-top: 4px;
+}
+
+.header-container .header .person .account .exit a:hover {
+    background: #717171;
+}
+
+.header-container .header .person .account .exit a img {
+    margin-right: 10px;
+    vertical-align: middle;
+}
