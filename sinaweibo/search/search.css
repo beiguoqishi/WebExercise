@@ -11,6 +11,14 @@ img {
     border: none;
 }
 
+input, textarea {
+    outline-style: none;
+}
+
+fieldset {
+    border: none;
+}
+
 .sep {
     color: #cccccc;
 }
@@ -35,6 +43,8 @@ img {
     left: 0;
     width: 100%;
     z-index: 100;
+    overflow: hidden;
+    _position: relative;
 }
 
 .header-container .header {
@@ -50,11 +60,20 @@ img {
     text-decoration: none;
 }
 
+*html .header-container .header .logo-wrapper {
+    width: 163px;
+    height: 30px;
+    float: left;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled = true, sizingMethod = noscale, src = "images/logo.png");
+}
+
 .header-container .header .logo {
     width: 163px;
     height: 30px;
     float: left;
     background: url("images/logo.png") no-repeat;
+    _background: none;
+    _position: relative;
 }
 
 .header-container .header ul {
@@ -62,11 +81,11 @@ img {
 }
 
 .header-container .header li {
-    height: 33px;
+    height: 35px;
     float: left;
     margin: 0 1px;
     position: relative;
-    line-height: 33px;
+    line-height: 35px;
 }
 
 .header-container .header li a.header-nav-link {
@@ -82,7 +101,7 @@ img {
 
 .header-container .header .drop-down {
     position: absolute;
-    top: 33px;
+    top: 35px;
     right: 0;
     border: 1px solid #888888;
     border-top: none;
@@ -346,4 +365,131 @@ img {
 .header-container .header .person .account .exit a img {
     margin-right: 10px;
     vertical-align: middle;
+}
+
+/*main begin*/
+.main {
+    width: 581px;
+    margin: 100px auto 0;
+}
+
+.main a {
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.main .big-logo {
+    background: url("images/search_logoB.png") no-repeat 50% 0;
+    height: 67px;
+}
+
+.main .search-list {
+    float: left;
+    margin-left: 22px;
+    margin-top: 30px;
+}
+
+.main .search-list li {
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    position: relative;
+    cursor: pointer;
+}
+
+.main .search-list li.search-item {
+    padding: 0 0 0 20px;
+    margin-bottom: -2px;
+}
+
+.main .search-list .current {
+    z-index: 1;
+    margin: 0 -6px;
+    background: url("images/search_tab_bg.png") no-repeat 0 0;
+    cursor: default;
+}
+
+.main .search-list .current a {
+    background: url("images/search_tab_bg.png") no-repeat right -33px;
+    color: #333333;
+    cursor: default;
+}
+
+.main .search-list li.seq {
+    z-index: 0;
+    color: #d0b8d0;
+    width: 6px;
+    height: 23px;
+    padding-top: 4px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.main .search-list .search-item a {
+    float: left;
+    height: 35px;
+    line-height: 35px;
+    padding: 0 20px 0 0;
+    color: #9abbc8;
+    text-decoration: none;
+}
+
+.main .search-form {
+    width: 539px;
+    height: 38px;
+    float: left;
+    background: url("images/srch_bar_w.png") no-repeat 0 -126px;
+    padding: 20px 20px 26px 26px;
+}
+
+.main .search-form .search-form-title {
+    height: 0;
+    line-height: 0;
+    margin-top: -999em;
+    top: -999em;
+    position: absolute;
+}
+
+.main .search-form .search-input {
+    width: 440px;
+    height: 28px;
+    border: none;
+    margin-top: 5px;
+    padding-left: 5px;
+    float: left;
+    font-size: 20px;
+    background: none;
+}
+
+.main .search-form .search-submit {
+    width: 85px;
+    height: 38px;
+    background: url("images/srch_bar_w.png") no-repeat 0 -80px;
+    float: left;
+    border: none;
+}
+
+.main .hot-search-list {
+    float: left;
+    width: 581px;
+    padding-left: 22px;
+    margin-top: 15px;
+    font-size: 12px;
+    _position: relative;
+}
+
+.main .hot-search-list dt {
+    padding-left: 30px;
+    float: left;
+    background: url("images/srch_ico.png") no-repeat 0 -984px;
+}
+
+.main .hot-search-list dd {
+    float: left;
+    margin-left: 10px;
+}
+
+.main .hot-search-list dd a {
+    font-size: 12px;
+    color: #0078b6;
 }
