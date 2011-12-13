@@ -1,8 +1,13 @@
 <%function header plaza_content_list=null apps_list=null app_recommends=null messages=null account=null%>
 <div class="header-container">
     <div class="header">
+        <!--[if IE 6.0]>
+           <div class="logo-wrapper">
+        <![endif]-->
         <a href="" class="logo"></a>
-
+        <!--[if IE 6.0]>
+           </div>
+        <![endif]-->
         <ul class="header-nav">
             <li class="home">
                 <a href="" class="header-nav-link">Ê×Ò³</a>
